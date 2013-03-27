@@ -54,7 +54,66 @@ class ZipCode extends Validator
      */
     protected $username = 'demo';
 
+    /**
+     * country
+     *
+     * This is a shortcut for $this->setCountry($country).
+     *
+     * @access public
+     * @param  string $country The country has to be in ISO-3166 format
+     * @return \Tuersteher\Extension\ZipCode
+     */
     public function country($country)
+    {
+
+        return $this->setCountry($country);
+
+    }
+
+    /**
+     * service
+     *
+     * This is a shortcut for $this->setService($service).
+     *
+     * @access public
+     * @param  string $service
+     * @return \Tuersteher\Extension\ZipCode
+     * @throws \Tuerster\Exception\InvalidArgument
+     */
+    public function service($service)
+    {
+
+        return $this->setService($service);
+
+    }
+
+    /**
+     * username
+     *
+     * This is a shortcut for $this->setUsername($username).
+     *
+     * @access public
+     * @param  string $username
+     * @return \Tuersteher\Extension\ZipCode
+     * @throws \Tuerster\Exception\InvalidArgument
+     */
+    public function username($username)
+    {
+
+        return $this->setUsername($username);
+
+    }
+
+    /**
+     * setCountry
+     *
+     * This is a shortcut for $this->setCountry($country).
+     *
+     * @access public
+     * @param  string $country The country has to be in ISO-3166 format
+     * @return \Tuersteher\Extension\ZipCode
+     */
+    public function setCountry($country)
     {
 
         $this->country = $country;
@@ -63,22 +122,46 @@ class ZipCode extends Validator
 
     }
 
-    public function service($service)
+    /**
+     * service
+     *
+     * This is a shortcut for $this->setService($service).
+     *
+     * @access public
+     * @param  string $service
+     * @return \Tuersteher\Extension\ZipCode
+     * @throws \Tuerster\Exception\InvalidArgument
+     */
+    public function setService($service)
     {
 
         if (method_exists($this, 'validate' . ucfirst($service)) == true) {
             $this->service = $service;
+
+            return $this;
         } else {
             throw new InvalidArgumentException('The service "' . $service . '" is not implemented.');
         }
 
     }
 
-    public function username($username)
+    /**
+     * username
+     *
+     * This is a shortcut for $this->setUsername($username).
+     *
+     * @access public
+     * @param  string $username
+     * @return \Tuersteher\Extension\ZipCode
+     * @throws \Tuerster\Exception\InvalidArgument
+     */
+    public function setUsername($username)
     {
 
         if (is_string($username) == true) {
             $this->username = $username;
+
+            return $this;
         } else {
             throw new InvalidArgumentException('The username must be a string.');
         }
