@@ -2,13 +2,18 @@
 
 namespace Tuersteher\Extension;
 
-use Guzzle\Http\Client as HttpClient;
+use \Guzzle\Http\Client as HttpClient;
+use \Tuersteher\Exception\InvalidArgument as InvalidArgumentException;
 use \Tuersteher\Validator\Validator as Validator;
 
 class ZipCode extends Validator
 {
 
-    protected $country;
+    protected $country = 'DE';
+
+    protected $service = 'geonames';
+
+    protected $username = 'demo';
 
     public function country($country)
     {
@@ -19,11 +24,34 @@ class ZipCode extends Validator
 
     }
 
+    public function service($service)
+    {
+
+        if (method_exists($this, 'validate' . ucfirst($service)) == true) {
+            $this->service = $service;
+        } else {
+            throw new InvalidArgumentException('The service "' . $service . '" is not implemented.');
+        }
+
+    }
+
+    public function username($username)
+    {
+
+        if (is_string($username) == true) {
+            $this->username = $username;
+        } else {
+            throw new InvalidArgumentException('The username must be a string.');
+        }
+
+    }
+
     public function validate($value)
     {
 
-        $result = $this->apiRequest($value);
-        if (count($result['postalcodes']) > 0) {
+        $methodName = 'validate' . ucfirst($this->service);
+        $isValid = $this->$methodName($value);
+        if (count($isValid) == true) {
             return $this->createResult(true, 'bla');
         } else {
             return $this->createResult(false, 'bla');
@@ -31,19 +59,37 @@ class ZipCode extends Validator
 
     }
 
-    protected function apiRequest($zip)
+    protected function validateGeonames($zip)
     {
 
         $client = new HttpClient('http://api.geonames.org');
         $request = $client->get('/postalCodeLookupJSON');
         $query = $request->getQuery();
-        $query->set('postalcode', $zip);
-        $query->set('country', $this->country);
-        $query->set('username', 'nilsabegg');
+        $query->set('postalcode', urlencode($zip));
+        $query->set('country', urlencode($this->country));
+        $query->set('username', urldecode($this->username));
         $response = $request->send();
         $resultSet = $response->json();
+        if (count($resultSet['postalcodes']) > 0) {
+            return true;
+        } else {
+            return false;
+        }
 
-        return $resultSet;
+    }
+
+    protected function validateZiptastic($zip)
+    {
+
+        $client = new HttpClient('http://zip.elevenbasetwo.com');
+        $request = $client->get('/v2/' . urlencode($this->country) . '/' . urlencode($zip));
+        $response = $request->send();
+        $resultSet = $response->json();
+        if (count($resultSet) > 0) {
+            return true;
+        } else {
+            return false;
+        }
 
     }
 }
