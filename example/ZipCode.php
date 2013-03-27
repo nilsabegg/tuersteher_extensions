@@ -11,9 +11,12 @@ $tuersteher = new \Tuersteher\Tuersteher();
 $tuersteher->add('zip', '\\Tuersteher\\Extension\\ZipCode')->country('DE')->username('nilsabegg');
 $result = $tuersteher->validate(array('zip' => '76229'));
 print_r($result);
-
+$result4 = $tuersteher->validate(array('zip' => '762293'));
+print_r($result4);
 $tuersteher2 = new \Tuersteher\Tuersteher();
 $tuersteher2->add('zip', '\\Tuersteher\\Extension\\ZipCode')->country('DE')->service('ziptastic');
 $result2 = $tuersteher2->validate(array('zip' => '76229'));
 print_r($result2);
+$result3 = $tuersteher2->validate(array('zip' => '762293'));
+print_r($result3);
 echo '</pre>';

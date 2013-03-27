@@ -51,9 +51,11 @@ class ZipCode extends Validator
 
         $methodName = 'validate' . ucfirst($this->service);
         $isValid = $this->$methodName($value);
-        if (count($isValid) == true) {
+        if ($isValid == true) {
+
             return $this->createResult(true, 'bla');
         } else {
+            
             return $this->createResult(false, 'bla');
         }
 
@@ -71,8 +73,10 @@ class ZipCode extends Validator
         $response = $request->send();
         $resultSet = $response->json();
         if (count($resultSet['postalcodes']) > 0) {
+
             return true;
         } else {
+
             return false;
         }
 
@@ -83,11 +87,12 @@ class ZipCode extends Validator
 
         $client = new HttpClient('http://zip.elevenbasetwo.com');
         $request = $client->get('/v2/' . urlencode($this->country) . '/' . urlencode($zip));
-        $response = $request->send();
-        $resultSet = $response->json();
-        if (count($resultSet) > 0) {
+        try {
+            $response = $request->send();
+
             return true;
-        } else {
+        } catch (\Guzzle\Http\Exception\ClientErrorResponseException $exception) {
+
             return false;
         }
 
