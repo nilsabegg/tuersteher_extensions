@@ -35,7 +35,7 @@ class ZipCode extends Validator
     protected $country = 'DE';
 
     /**
-     * country
+     * service
      *
      * Holds the webservice to validate the zip code.
      *
@@ -45,7 +45,7 @@ class ZipCode extends Validator
     protected $service = 'geonames';
 
     /**
-     * country
+     * username
      *
      * Holds the username for the webservice.
      *
@@ -59,9 +59,11 @@ class ZipCode extends Validator
      *
      * This is a shortcut for $this->setCountry($country).
      *
+     *
      * @access public
      * @param  string $country The country has to be in ISO-3166 format
      * @return \Tuersteher\Extension\ZipCode
+     * @see    \Tuersteher\Extension\ZipCode::setCountry()
      */
     public function country($country)
     {
@@ -78,6 +80,7 @@ class ZipCode extends Validator
      * @access public
      * @param  string $service
      * @return \Tuersteher\Extension\ZipCode
+     * @see    \Tuersteher\Extension\ZipCode::setService()
      * @throws \Tuerster\Exception\InvalidArgument
      */
     public function service($service)
@@ -95,6 +98,7 @@ class ZipCode extends Validator
      * @access public
      * @param  string $username
      * @return \Tuersteher\Extension\ZipCode
+     * @see    \Tuersteher\Extension\ZipCode::setUsername()
      * @throws \Tuerster\Exception\InvalidArgument
      */
     public function username($username)
