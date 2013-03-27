@@ -21,7 +21,7 @@ class ZipCode extends Validator
 
     public function validate($value)
     {
-        
+
         $result = $this->apiRequest($value);
         if (count($result['postalcodes']) > 0) {
             return $this->createResult(true, 'bla');
@@ -40,7 +40,6 @@ class ZipCode extends Validator
         $query->set('username', $zip);
         $query->set('country', $this->country);
         $query->set('username', 'tuersteher');
-        $request->setQuery($query);
         $response = $request->send();
         $resultSet = $response->json();
 
