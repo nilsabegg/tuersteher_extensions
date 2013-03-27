@@ -16,7 +16,7 @@
     "minimum-stability" : "dev",
     "require": {
         "php": ">=5.3.2",
-        "ffuf/tuersteher": "master-dev",
+        "nilsabegg/tuersteher": "dev-master",
         "guzzle/guzzle": "~3.1.1"
     },
     "autoload": {
