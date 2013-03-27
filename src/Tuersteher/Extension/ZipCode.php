@@ -58,7 +58,7 @@ class ZipCode extends Validator
      * country
      *
      * This is a shortcut for $this->setCountry($country).
-     *
+     * The country code has to be in ISO-3166 format.
      *
      * @access public
      * @param  string $country The country has to be in ISO-3166 format
@@ -111,7 +111,8 @@ class ZipCode extends Validator
     /**
      * setCountry
      *
-     * This is a shortcut for $this->setCountry($country).
+     * Sets the country for the zip code.
+     * The country code has to be in ISO-3166 format.
      *
      * @access public
      * @param  string $country The country has to be in ISO-3166 format
@@ -127,9 +128,9 @@ class ZipCode extends Validator
     }
 
     /**
-     * service
+     * setService
      *
-     * This is a shortcut for $this->setService($service).
+     * Sets the service to validate the zip code.
      *
      * @access public
      * @param  string $service
@@ -152,7 +153,7 @@ class ZipCode extends Validator
     /**
      * username
      *
-     * This is a shortcut for $this->setUsername($username).
+     * Sets the username for the webservice.
      *
      * @access public
      * @param  string $username
@@ -172,6 +173,15 @@ class ZipCode extends Validator
 
     }
 
+    /**
+     * validate
+     *
+     * 
+     *
+     * @access protected
+     * @param  string $value
+     * @return \Tuersteher\Interfaces\Result\Validator
+     */
     public function validate($value)
     {
 
@@ -187,6 +197,15 @@ class ZipCode extends Validator
 
     }
 
+    /**
+     * validateGeonames
+     *
+     *
+     *
+     * @access protected
+     * @param  string $zip
+     * @return boolean
+     */
     protected function validateGeonames($zip)
     {
 
@@ -208,6 +227,15 @@ class ZipCode extends Validator
 
     }
 
+    /**
+     * validateZiptastic
+     *
+     *
+     *
+     * @access protected
+     * @param  string $zip
+     * @return boolean
+     */
     protected function validateZiptastic($zip)
     {
 
