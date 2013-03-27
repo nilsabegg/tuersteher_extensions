@@ -1,0 +1,27 @@
+{
+    "name": "nilsabegg/tuersteher",
+    "type": "framework",
+    "description": "A Validation Library.",
+    "keywords": ["validation"],
+    "homepage": "http://github.com/nilsabegg/tuersteher",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nils Abegg",
+            "email": "rueckgrat@nilsabegg.de",
+            "homepage": "http://twitter/nilsabegg",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability" : "dev",
+    "require": {
+        "php": ">=5.3.2",
+        "nilsabegg/tuersteher": "master-dev",
+        "guzzle/guzzle": "~3.1.1"
+    },
+    "autoload": {
+        "psr-0": {
+            "Tuersteher\Extensions": "src"
+        }
+    }
+}
