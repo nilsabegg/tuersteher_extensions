@@ -1,6 +1,6 @@
 <?php
 
-namespace Tuersteher\Extension\ZipCode;
+namespace Tuersteher\Extension;
 
 use \Tuersteher\Validator\Validator as Validator;
 
