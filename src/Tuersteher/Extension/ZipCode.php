@@ -37,9 +37,9 @@ class ZipCode extends Validator
         $client = new HttpClient('http://api.geonames.org');
         $request = $client->get('/postalCodeLookupJSON');
         $query = $request->getQuery();
-        $query->set('username', $zip);
+        $query->set('postalcode', $zip);
         $query->set('country', $this->country);
-        $query->set('username', 'tuersteher');
+        $query->set('username', 'nilsabegg');
         $response = $request->send();
         $resultSet = $response->json();
 
