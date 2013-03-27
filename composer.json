@@ -1,9 +1,9 @@
 {
-    "name": "nilsabegg/tuersteher",
+    "name": "nilsabegg/tuersteher_extensions",
     "type": "framework",
     "description": "A Validation Library.",
     "keywords": ["validation"],
-    "homepage": "http://github.com/nilsabegg/tuersteher",
+    "homepage": "http://github.com/nilsabegg/tuersteher_extensions",
     "license": "MIT",
     "authors": [
         {
